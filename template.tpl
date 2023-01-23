@@ -58,10 +58,14 @@ ___TEMPLATE_PARAMETERS___
 
 
 ___SANDBOXED_JS_FOR_SERVER___
+if(data.input){
+  const sha256Sync = require('sha256Sync');
 
-const sha256Sync = require('sha256Sync');
-
-return sha256Sync(data.input, {outputEncoding: data.encoding});
+  return sha256Sync(data.input, {outputEncoding: data.encoding});
+    data.gtmOnSuccess();
+} else {
+    data.gtmOnFailure();
+}
 
 
 ___TESTS___
